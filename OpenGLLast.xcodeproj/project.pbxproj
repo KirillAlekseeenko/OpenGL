@@ -7,7 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		121AAB022625F6D900CB87F0 /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 121AAB002625F6D900CB87F0 /* Object.cpp */; };
+		12301E2D2628C4830012D2B0 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12301E2B2628C4830012D2B0 /* Camera.cpp */; };
+		1242964D262AA24E00AA54CB /* Move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1242964B262AA24E00AA54CB /* Move.cpp */; };
+		12429651262AA35400AA54CB /* CameraRotate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1242964F262AA35400AA54CB /* CameraRotate.cpp */; };
+		12429657262ACA1B00AA54CB /* Rotate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12429655262ACA1B00AA54CB /* Rotate.cpp */; };
+		1242965C262B0F2800AA54CB /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1242965A262B0F2800AA54CB /* Counter.cpp */; };
+		12429661262B0F8100AA54CB /* InputController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1242965F262B0F8100AA54CB /* InputController.cpp */; };
+		12429666262B332700AA54CB /* AuxiliaryTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12429664262B332700AA54CB /* AuxiliaryTexture.cpp */; };
+		124F1A9A26274C76006A1389 /* AttributePointers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 124F1A9826274C76006A1389 /* AttributePointers.cpp */; };
+		124F1A9E26274EE3006A1389 /* ObjectData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 124F1A9C26274EE3006A1389 /* ObjectData.cpp */; };
+		124F1AA226278D0A006A1389 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 124F1AA026278D0A006A1389 /* Texture.cpp */; };
+		126035C72622FE0700A5A888 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 126035C52622FE0700A5A888 /* Shader.cpp */; };
+		126035CB2623110300A5A888 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 126035C92623110300A5A888 /* ShaderProgram.cpp */; };
+		126035D02623499200A5A888 /* VertexArrayObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 126035CE2623499200A5A888 /* VertexArrayObject.cpp */; };
+		126035D526234C6200A5A888 /* VertexBufferObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 126035D326234C6200A5A888 /* VertexBufferObject.cpp */; };
+		12656B482629EB1F00AA08B5 /* Presets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12656B462629EB1F00AA08B5 /* Presets.cpp */; };
+		12656B4D262A201B00AA08B5 /* Command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12656B4B262A201B00AA08B5 /* Command.cpp */; };
+		12A3326E2622126A00753132 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DE6B022622068200588393 /* OpenGL.framework */; };
 		12DE6AFA2622008400588393 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6AF92622008400588393 /* main.cpp */; };
+		12DE6B05262206DC00588393 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DE6B04262206DC00588393 /* libglfw.3.3.dylib */; };
+		12DE6B0826220B4C00588393 /* libGLEW.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DE6B0726220B4C00588393 /* libGLEW.2.2.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +43,48 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		121AAB002625F6D900CB87F0 /* Object.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Object.cpp; sourceTree = "<group>"; };
+		121AAB012625F6D900CB87F0 /* Object.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Object.hpp; sourceTree = "<group>"; };
+		12301E2B2628C4830012D2B0 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		12301E2C2628C4830012D2B0 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
+		1242964B262AA24E00AA54CB /* Move.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Move.cpp; sourceTree = "<group>"; };
+		1242964C262AA24E00AA54CB /* Move.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Move.hpp; sourceTree = "<group>"; };
+		1242964F262AA35400AA54CB /* CameraRotate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CameraRotate.cpp; sourceTree = "<group>"; };
+		12429650262AA35400AA54CB /* CameraRotate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CameraRotate.hpp; sourceTree = "<group>"; };
+		12429655262ACA1B00AA54CB /* Rotate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Rotate.cpp; sourceTree = "<group>"; };
+		12429656262ACA1B00AA54CB /* Rotate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Rotate.hpp; sourceTree = "<group>"; };
+		1242965A262B0F2800AA54CB /* Counter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Counter.cpp; sourceTree = "<group>"; };
+		1242965B262B0F2800AA54CB /* Counter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Counter.hpp; sourceTree = "<group>"; };
+		1242965F262B0F8100AA54CB /* InputController.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InputController.cpp; sourceTree = "<group>"; };
+		12429660262B0F8100AA54CB /* InputController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InputController.hpp; sourceTree = "<group>"; };
+		12429664262B332700AA54CB /* AuxiliaryTexture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AuxiliaryTexture.cpp; sourceTree = "<group>"; };
+		12429665262B332700AA54CB /* AuxiliaryTexture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AuxiliaryTexture.hpp; sourceTree = "<group>"; };
+		124F1A9826274C76006A1389 /* AttributePointers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AttributePointers.cpp; sourceTree = "<group>"; };
+		124F1A9926274C76006A1389 /* AttributePointers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AttributePointers.hpp; sourceTree = "<group>"; };
+		124F1A9C26274EE3006A1389 /* ObjectData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectData.cpp; sourceTree = "<group>"; };
+		124F1A9D26274EE3006A1389 /* ObjectData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ObjectData.hpp; sourceTree = "<group>"; };
+		124F1AA026278D0A006A1389 /* Texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		124F1AA126278D0A006A1389 /* Texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
+		126035C52622FE0700A5A888 /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		126035C62622FE0700A5A888 /* Shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
+		126035C92623110300A5A888 /* ShaderProgram.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderProgram.cpp; sourceTree = "<group>"; };
+		126035CA2623110300A5A888 /* ShaderProgram.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShaderProgram.hpp; sourceTree = "<group>"; };
+		126035CE2623499200A5A888 /* VertexArrayObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VertexArrayObject.cpp; sourceTree = "<group>"; };
+		126035CF2623499200A5A888 /* VertexArrayObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexArrayObject.hpp; sourceTree = "<group>"; };
+		126035D326234C6200A5A888 /* VertexBufferObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VertexBufferObject.cpp; sourceTree = "<group>"; };
+		126035D426234C6200A5A888 /* VertexBufferObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexBufferObject.hpp; sourceTree = "<group>"; };
+		12656B462629EB1F00AA08B5 /* Presets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Presets.cpp; sourceTree = "<group>"; };
+		12656B472629EB1F00AA08B5 /* Presets.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Presets.hpp; sourceTree = "<group>"; };
+		12656B4B262A201B00AA08B5 /* Command.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Command.cpp; sourceTree = "<group>"; };
+		12656B4C262A201B00AA08B5 /* Command.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Command.hpp; sourceTree = "<group>"; };
+		12656B4F262A20D200AA08B5 /* ICommand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ICommand.hpp; sourceTree = "<group>"; };
+		12656B51262A213800AA08B5 /* Actor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Actor.hpp; sourceTree = "<group>"; };
+		12A332662622120900753132 /* OpenGLLast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OpenGLLast.entitlements; sourceTree = "<group>"; };
 		12DE6AF62622008400588393 /* OpenGLLast */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenGLLast; sourceTree = BUILT_PRODUCTS_DIR; };
 		12DE6AF92622008400588393 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		12DE6B022622068200588393 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		12DE6B04262206DC00588393 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../../usr/local/Cellar/glfw/3.3.3/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
+		12DE6B0726220B4C00588393 /* libGLEW.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.2.0.dylib; path = ../../../../../usr/local/Cellar/glew/2.2.0_1/lib/libGLEW.2.2.0.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,17 +92,113 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12DE6B0826220B4C00588393 /* libGLEW.2.2.0.dylib in Frameworks */,
+				12DE6B05262206DC00588393 /* libglfw.3.3.dylib in Frameworks */,
+				12A3326E2622126A00753132 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		121AAAFF2625F6B800CB87F0 /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				121AAB002625F6D900CB87F0 /* Object.cpp */,
+				121AAB012625F6D900CB87F0 /* Object.hpp */,
+				12301E2B2628C4830012D2B0 /* Camera.cpp */,
+				12301E2C2628C4830012D2B0 /* Camera.hpp */,
+			);
+			path = Object;
+			sourceTree = "<group>";
+		};
+		12429659262B0F1C00AA54CB /* Counter */ = {
+			isa = PBXGroup;
+			children = (
+				1242965A262B0F2800AA54CB /* Counter.cpp */,
+				1242965B262B0F2800AA54CB /* Counter.hpp */,
+			);
+			path = Counter;
+			sourceTree = "<group>";
+		};
+		1242965E262B0F7100AA54CB /* InputController */ = {
+			isa = PBXGroup;
+			children = (
+				1242965F262B0F8100AA54CB /* InputController.cpp */,
+				12429660262B0F8100AA54CB /* InputController.hpp */,
+			);
+			path = InputController;
+			sourceTree = "<group>";
+		};
+		126035C42622FDF800A5A888 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				126035C52622FE0700A5A888 /* Shader.cpp */,
+				126035C62622FE0700A5A888 /* Shader.hpp */,
+				126035C92623110300A5A888 /* ShaderProgram.cpp */,
+				126035CA2623110300A5A888 /* ShaderProgram.hpp */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		126035CD2623497A00A5A888 /* Buffers */ = {
+			isa = PBXGroup;
+			children = (
+				126035CE2623499200A5A888 /* VertexArrayObject.cpp */,
+				126035CF2623499200A5A888 /* VertexArrayObject.hpp */,
+				126035D326234C6200A5A888 /* VertexBufferObject.cpp */,
+				126035D426234C6200A5A888 /* VertexBufferObject.hpp */,
+				124F1A9826274C76006A1389 /* AttributePointers.cpp */,
+				124F1A9926274C76006A1389 /* AttributePointers.hpp */,
+				124F1A9C26274EE3006A1389 /* ObjectData.cpp */,
+				124F1A9D26274EE3006A1389 /* ObjectData.hpp */,
+				124F1AA026278D0A006A1389 /* Texture.cpp */,
+				124F1AA126278D0A006A1389 /* Texture.hpp */,
+				12429664262B332700AA54CB /* AuxiliaryTexture.cpp */,
+				12429665262B332700AA54CB /* AuxiliaryTexture.hpp */,
+			);
+			path = Buffers;
+			sourceTree = "<group>";
+		};
+		12656B452629EB0600AA08B5 /* FigurePresets */ = {
+			isa = PBXGroup;
+			children = (
+				12656B462629EB1F00AA08B5 /* Presets.cpp */,
+				12656B472629EB1F00AA08B5 /* Presets.hpp */,
+			);
+			path = FigurePresets;
+			sourceTree = "<group>";
+		};
+		12656B4A262A200500AA08B5 /* Command */ = {
+			isa = PBXGroup;
+			children = (
+				12656B4B262A201B00AA08B5 /* Command.cpp */,
+				12656B4C262A201B00AA08B5 /* Command.hpp */,
+				12656B4F262A20D200AA08B5 /* ICommand.hpp */,
+				1242964B262AA24E00AA54CB /* Move.cpp */,
+				1242964C262AA24E00AA54CB /* Move.hpp */,
+				1242964F262AA35400AA54CB /* CameraRotate.cpp */,
+				12429650262AA35400AA54CB /* CameraRotate.hpp */,
+				12429655262ACA1B00AA54CB /* Rotate.cpp */,
+				12429656262ACA1B00AA54CB /* Rotate.hpp */,
+			);
+			path = Command;
+			sourceTree = "<group>";
+		};
+		12656B50262A212800AA08B5 /* Actor */ = {
+			isa = PBXGroup;
+			children = (
+				12656B51262A213800AA08B5 /* Actor.hpp */,
+			);
+			path = Actor;
+			sourceTree = "<group>";
+		};
 		12DE6AED2622008400588393 = {
 			isa = PBXGroup;
 			children = (
 				12DE6AF82622008400588393 /* OpenGLLast */,
 				12DE6AF72622008400588393 /* Products */,
+				12DE6B012622068200588393 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +213,28 @@
 		12DE6AF82622008400588393 /* OpenGLLast */ = {
 			isa = PBXGroup;
 			children = (
+				1242965E262B0F7100AA54CB /* InputController */,
+				12429659262B0F1C00AA54CB /* Counter */,
+				12656B50262A212800AA08B5 /* Actor */,
+				12656B4A262A200500AA08B5 /* Command */,
+				12656B452629EB0600AA08B5 /* FigurePresets */,
+				121AAAFF2625F6B800CB87F0 /* Object */,
+				126035CD2623497A00A5A888 /* Buffers */,
+				126035C42622FDF800A5A888 /* Shaders */,
+				12A332662622120900753132 /* OpenGLLast.entitlements */,
 				12DE6AF92622008400588393 /* main.cpp */,
 			);
 			path = OpenGLLast;
+			sourceTree = "<group>";
+		};
+		12DE6B012622068200588393 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				12DE6B0726220B4C00588393 /* libGLEW.2.2.0.dylib */,
+				12DE6B04262206DC00588393 /* libglfw.3.3.dylib */,
+				12DE6B022622068200588393 /* OpenGL.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +293,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				124F1A9E26274EE3006A1389 /* ObjectData.cpp in Sources */,
+				126035CB2623110300A5A888 /* ShaderProgram.cpp in Sources */,
+				12301E2D2628C4830012D2B0 /* Camera.cpp in Sources */,
+				126035D526234C6200A5A888 /* VertexBufferObject.cpp in Sources */,
+				1242964D262AA24E00AA54CB /* Move.cpp in Sources */,
+				124F1AA226278D0A006A1389 /* Texture.cpp in Sources */,
+				121AAB022625F6D900CB87F0 /* Object.cpp in Sources */,
+				12429661262B0F8100AA54CB /* InputController.cpp in Sources */,
+				126035C72622FE0700A5A888 /* Shader.cpp in Sources */,
+				12656B4D262A201B00AA08B5 /* Command.cpp in Sources */,
+				12429657262ACA1B00AA54CB /* Rotate.cpp in Sources */,
+				126035D02623499200A5A888 /* VertexArrayObject.cpp in Sources */,
 				12DE6AFA2622008400588393 /* main.cpp in Sources */,
+				1242965C262B0F2800AA54CB /* Counter.cpp in Sources */,
+				124F1A9A26274C76006A1389 /* AttributePointers.cpp in Sources */,
+				12656B482629EB1F00AA08B5 /* Presets.cpp in Sources */,
+				12429666262B332700AA54CB /* AuxiliaryTexture.cpp in Sources */,
+				12429651262AA35400AA54CB /* CameraRotate.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,9 +431,21 @@
 		12DE6AFE2622008400588393 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CODE_SIGN_ENTITLEMENTS = OpenGLLast/OpenGLLast.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83ZR7QVY2W;
 				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include/;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/usr/local/Cellar/glfw/../lib,
+					/usr/local/Cellar/glfw/3.3.3/lib,
+					/usr/local/Cellar/glew/2.2.0_1/lib,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = render;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -249,9 +453,21 @@
 		12DE6AFF2622008400588393 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CODE_SIGN_ENTITLEMENTS = OpenGLLast/OpenGLLast.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83ZR7QVY2W;
 				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include/;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/usr/local/Cellar/glfw/../lib,
+					/usr/local/Cellar/glfw/3.3.3/lib,
+					/usr/local/Cellar/glew/2.2.0_1/lib,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = render;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
