@@ -38,6 +38,8 @@ public:
     bool is_valid() {return data != nullptr;}
     
     GLuint get_handle() const { return handle; }                                 // TODO: create abstract opengl object
+    
+    std::string get_path() const;
 private:
     
     GLuint handle = 0;
@@ -48,6 +50,8 @@ private:
     int width = 0;
     int height = 0;
     int nrChannels = 0;
+    
+    std::string path;
     
 private:
     

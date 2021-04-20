@@ -28,9 +28,9 @@ Texture::~Texture()
     }
 }
 
-Texture::Texture(std::string path) : Texture()
+Texture::Texture(std::string p) : Texture()
 {
-    set_texture_data(path);
+    set_texture_data(p);
 }
 
 Texture::Texture(Texture&& t) : data{t.data}, handle{t.handle}, width{t.width}, height{t.height}, nrChannels{t.nrChannels}
@@ -60,6 +60,8 @@ Texture& Texture::operator=(Texture&& t)
 
 Texture& Texture::set_texture_data(std::string path)
 {
+    this->path = path;
+    
     data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
     
     if (data)
@@ -112,4 +114,9 @@ Texture& Texture::set_mag_filter(GLint type)
     });
     
     return *this;
+}
+
+std::string Texture::get_path() const
+{
+    return path;
 }

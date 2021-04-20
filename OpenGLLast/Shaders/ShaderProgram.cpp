@@ -115,3 +115,27 @@ ShaderProgram& ShaderProgram::set_view_mat(glm::mat4 m)
     
     return *this;
 }
+
+ShaderProgram& ShaderProgram::set_camera_pos(glm::vec3 p)
+{
+    auto camera_position = get_uniform_location("camera_position");
+    glUniform3fv(camera_position, 1, glm::value_ptr(p));
+    
+    return *this;
+}
+
+ShaderProgram& ShaderProgram::set_light_pos(glm::vec3 p)
+{
+    auto light_position = get_uniform_location("light_position");
+    glUniform3fv(light_position, 1, glm::value_ptr(p));
+    
+    return *this;
+}
+
+ShaderProgram& ShaderProgram::set_ambient_strength(float s)
+{
+    auto ambient_strength = get_uniform_location("ambient_strength");
+    glUniform1f(ambient_strength, s);
+    
+    return *this;
+}

@@ -26,6 +26,7 @@
 #include "VertexBufferObject.hpp"
 #include "Texture.hpp"
 
+#include "Vector.hpp"
 #include "Object.hpp"
 #include "ObjectData.hpp"
 
@@ -36,6 +37,7 @@
 #include "Presets.hpp"
 
 #include "InputController.hpp"
+
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 int lib_init(GLFWwindow* &window);
@@ -114,48 +116,72 @@ int lib_init(GLFWwindow* &w)
     return 0;
 }
 
+/* 1. create shader collection class, that will link them, and set camera, lights etc
+   2. think of a way to transform normal vectors according to the position of object
+   3. track object location, rotation i.e. transform (now location is wrong when object (out only light) is scaled
+   4. inputs collection, maybe we should create new class
+   5. attach objects to shader the use, it allow to draw all objects in a single for loop
+   6. somehow simplify object creation*/
+
 void main_actions(GLFWwindow* window)
 {
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    
+    glPointSize(20.0f);
+    
+    glFrontFace(GL_CCW);
     
     InputController input_controller;
     
     auto camera = std::make_shared<Camera>();
     camera->set_postion(glm::vec3(0.0f, 0.0f, 2.0f));
     
+    std::vector<std::shared_ptr<ShaderProgram>> all_shaders;
+    std::vector<std::shared_ptr<Texture>> all_textures;
+    
+    auto vector_shader = std::make_shared<ShaderProgram>(
+                                                         Shader(GL_VERTEX_SHADER, "vector_vertex_shader.glsl"),
+                                                         Shader(GL_FRAGMENT_SHADER, "vector_fragment_shader.glsl"));
+    
+    auto light_shader = std::make_shared<ShaderProgram>(
+                                                        Shader(GL_VERTEX_SHADER, "light_obj_vertex.glsl"),
+                                                        Shader(GL_FRAGMENT_SHADER, "light_obj_fragment.glsl"));
+    
     auto program = std::make_shared<ShaderProgram>(Shader(GL_VERTEX_SHADER, "tri_vertex.glsl"), Shader(GL_FRAGMENT_SHADER, "tri_fragment.glsl"));
     
     auto shifted_color_program = std::make_shared<ShaderProgram>(Shader(GL_VERTEX_SHADER, "tri_vertex_2.glsl"), Shader(GL_FRAGMENT_SHADER, "tri_fragment_2.glsl"));
     
-    auto result = program->link();
-    if (std::get<0>(result) == GL_FALSE)
-    {
-        return;
-    }
+    all_shaders.push_back(vector_shader);
+    all_shaders.push_back(light_shader);
+    all_shaders.push_back(program);
+    all_shaders.push_back(shifted_color_program);
     
-    result = shifted_color_program->link();
-    if (std::get<0>(result) == GL_FALSE)
+    for (auto p : all_shaders)
     {
-        return;
+        auto result = p->link();
+        if (std::get<0>(result) == GL_FALSE)
+        {
+            return;
+        }
     }
     
     auto texture = std::make_shared<Texture>("wall.jpg");
-
-    if (!texture->is_valid())
+    auto texture_basement = std::make_shared<Texture>("basement.jpg");
+    
+    all_textures.push_back(texture);
+    all_textures.push_back(texture_basement);
+    
+    for (auto t : all_textures)
     {
-        std::cout << "texture is invalid";
-        
-        return;
+        if (!t->is_valid())
+        {
+            std::cout << "\n" << t->get_path() << " texture is invalid";
+        }
     }
     
-    auto texture_basement = std::make_shared<Texture>("basement.jpg");
-
-    if (!texture_basement->is_valid())
-    {
-        std::cout << "texture is invalid";
-        
-        return;
-    }
+    Vector vec{vector_shader};
+    vec.set_positon(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     
     auto pyramid_data = ObjectData<float>{};
     
@@ -164,6 +190,10 @@ void main_actions(GLFWwindow* window)
         .set_attribute_pointer(AttributePointer{0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0})
         .set_attribute_pointer(AttributePointer{1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float))})
         .set_attribute_pointer(AttributePointer{2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float))});
+    
+    pyramid_data.compute_and_add_normals();
+    
+    auto normals = pyramid_data.get_normals();
     
     Object pyramid{shifted_color_program, pyramid_data};
     
@@ -176,19 +206,28 @@ void main_actions(GLFWwindow* window)
     .set_attribute_pointer(AttributePointer{0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0})
     .set_attribute_pointer(AttributePointer{1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float))});
     
-    Object light {shifted_color_program, light_data};
+    auto light = std::make_shared<Object>(light_shader, light_data);
     
-    light.set_position(glm::translate(model, glm::vec3(2.0f, 2.0f, 2.0f)));
+    light->translate(glm::vec3(2.0f, 2.0f, 2.0f));
+    //.scale(glm::vec3(0.2f, 0.2f, 0.2f));
     
-    shifted_color_program->use();
+    for (auto s : all_shaders)
+    {
+        s->use();
+        
+        s->set_view_mat(camera->get_look_at());
+        s->set_projection_mat(glm::perspective(glm::radians(45.0f), 640.0f / 480.0f , 0.1f, 100.0f));
+    }
     
-    shifted_color_program->set_view_mat(camera->get_look_at());
-    shifted_color_program->set_projection_mat(glm::perspective(glm::radians(45.0f), 640.0f / 480.0f , 0.1f, 100.0f));
+    shifted_color_program->set_camera_pos(camera->get_position());
+    shifted_color_program->set_light_pos(light->get_world_position());
+    shifted_color_program->set_ambient_strength(0.1f);
 
     std::cout << "OpenGL version: " << glGetString(GL_VERSION);
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     
-    //auto model_uniform = program->get_uniform_location("model");
+    
+    // main loop stuff
     
     auto last_frame = 0.0f;
     auto current_frame = 0.0f;
@@ -213,14 +252,36 @@ void main_actions(GLFWwindow* window)
             view_command.second->execute(camera);
         }
         
+        auto light_move = input_controller.try_process_secondary_movement(window, delta, 2.0f);
+        if (light_move.first)
+        {
+            light_move.second->execute(light);
+        }
+        
         // Render here!
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
-        
+        shifted_color_program->use();
         shifted_color_program->set_view_mat(camera->get_look_at());
+        shifted_color_program->set_camera_pos(camera->get_position());
+        shifted_color_program->set_light_pos(light->get_world_position());
         
         pyramid.draw();
-        light.draw();
+        
+        light_shader->use();
+        light_shader->set_view_mat(camera->get_look_at());
+        
+        
+        light->draw();
+        
+        vector_shader->use();
+        vector_shader->set_view_mat(camera->get_look_at());
+        
+        /*for (auto& p : normals)
+        {
+            vec.set_positon(p.first, p.second);
+            vec.draw();
+        }*/
 
         // Swap front and back buffers
         glfwSwapBuffers(window);

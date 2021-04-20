@@ -127,9 +127,24 @@ void Object::draw()
     });
 }
 
-Object& Object::set_position(glm::mat4 pos)
+Object& Object::translate(glm::vec3 v)
 {
-    position = pos;
+    world_position += v;
+    position = glm::translate(position, v);
+    
+    return *this;
+}
+
+Object& Object::rotate(float angle, glm::vec3 axis)
+{
+    position = glm::rotate(position, angle, axis);
+    
+    return *this;
+}
+
+Object& Object::scale(glm::vec3 s)
+{
+    position = glm::scale(position, s);
     
     return *this;
 }
@@ -137,6 +152,11 @@ Object& Object::set_position(glm::mat4 pos)
 glm::mat4 Object::get_position()
 {
     return position;
+}
+
+glm::vec3 Object::get_world_position()
+{
+    return world_position;
 }
 
 Object& Object::set_shader(std::shared_ptr<ShaderProgram> sd)
@@ -161,4 +181,17 @@ Object& Object::set_texture(std::shared_ptr<Texture> s)
 std::shared_ptr<Texture> Object::get_texture()
 {
     return texture;
+}
+
+
+// IActor
+
+void Object::move_offset(glm::vec3 offset)
+{
+    translate(offset);
+}
+
+void Object::rotate_offset(glm::vec3 offset)           // TODO: rotation axis to rotate random object
+{
+    
 }

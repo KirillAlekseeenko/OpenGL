@@ -52,9 +52,37 @@ std::pair<bool, std::unique_ptr<ICommand>> InputController::try_process_movement
             move.x += cameraSpeed;
         if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
             move.x -= cameraSpeed;
+        if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+            move.y += cameraSpeed;
+        if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+            move.y -= cameraSpeed;
     
-    if (move.x == 0 && move.z == 0) return std::make_pair(false, std::unique_ptr<ICommand>{});
+    if (move.x == 0 && move.z == 0 && move.y == 0) return std::make_pair(false, std::unique_ptr<ICommand>{});
     
     return std::make_pair(true, std::make_unique<Move>(move));
 }
+
+std::pair<bool, std::unique_ptr<ICommand>> InputController::try_process_secondary_movement(GLFWwindow* window, float delta, float sense)
+{
+    float cameraSpeed = sense * delta;
+    glm::vec3 move{0.0f, 0.0f, 0.0f};
+        if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
+            move.z += cameraSpeed;
+        if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
+            move.z -= cameraSpeed;
+        if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
+            move.x += cameraSpeed;
+        if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
+            move.x -= cameraSpeed;
+        if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
+            move.y += cameraSpeed;
+        if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
+            move.y -= cameraSpeed;
+    
+    if (move.x == 0 && move.z == 0 && move.z) return std::make_pair(false, std::unique_ptr<ICommand>{});
+    
+    return std::make_pair(true, std::make_unique<Move>(move));
+}
+
+
 

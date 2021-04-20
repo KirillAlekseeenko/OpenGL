@@ -45,6 +45,10 @@ public:
     
     ShaderProgram& set_projection_mat(glm::mat4 m);
     ShaderProgram& set_view_mat(glm::mat4 m);
+    
+    ShaderProgram& set_camera_pos(glm::vec3 p);
+    ShaderProgram& set_light_pos(glm::vec3 p);
+    ShaderProgram& set_ambient_strength(float s);
 private:
     std::vector<Shader> pipeline;
     GLuint handle = 0;

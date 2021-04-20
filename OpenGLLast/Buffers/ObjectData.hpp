@@ -10,6 +10,8 @@
 
 #include "AttributePointers.hpp"
 
+#include <glm/glm.hpp>
+
 #include <vector>
 
 template<class T>
@@ -87,10 +89,86 @@ public:
         return true;
     }
     
+    bool compute_and_add_normals()
+    {
+        if (!validate())
+        {
+            return false;
+        }
+        
+        size_t stride = attr_pointers[0].stride / sizeof(float);
+        
+        std::vector<glm::vec3> normals;
+        
+        auto v_count = get_vertex_count();
+        
+        normal_vectors.clear();
+        normal_vectors.reserve(v_count);
+        
+        normals.reserve(v_count);
+        
+        std::vector<glm::vec3> triangle {3};
+        
+        for (auto i = 0; i < v_count; i++)
+        {
+            auto x = data[i * stride];
+            auto y = data[i * stride + 1];
+            auto z = data[i * stride + 2];
+            
+            triangle[i % 3] = glm::vec3(x, y, z);
+            
+            if ((i + 1) % 3 == 0)
+            {
+                auto vec1 = glm::normalize(triangle[1] - triangle[0]);
+                auto vec2 = glm::normalize(triangle[2] - triangle[0]);
+                
+                normals.emplace_back(glm::normalize(glm::cross(vec1, vec2)));
+                
+                normal_vectors.emplace_back(std::make_pair(triangle[0], normals[normals.size() - 1]));
+                normal_vectors.emplace_back(std::make_pair(triangle[1], normals[normals.size() - 1]));
+                normal_vectors.emplace_back(std::make_pair(triangle[2], normals[normals.size() - 1]));
+            }
+        }
+        
+        std::vector<float> new_data;
+        new_data.reserve(data.size() + normals.size() * 3 * 3);          // for each vertex there is a normal, so 9 additional float components for each triangle
+        
+        
+        for (auto i = 0; i < data.size(); i++)
+        {
+            new_data.emplace_back(data[i]);
+            
+            if ((i + 1) % stride == 0)
+            {
+                auto current_normal_i = i / (stride * 3);
+                new_data.emplace_back(normals[current_normal_i].x);
+                new_data.emplace_back(normals[current_normal_i].y);
+                new_data.emplace_back(normals[current_normal_i].z);
+            }
+        }
+        
+        data = new_data;
+        
+        auto new_stride = (int) (stride + 3) * sizeof(float);
+        
+        for (auto& attr : attr_pointers)
+        {
+            attr.stride = new_stride;
+        }
+        
+        AttributePointer normals_attr {(int)attr_pointers.size(), 3, GL_FLOAT, GL_FALSE, static_cast<GLsizei>(new_stride), (void*) (sizeof(float) * stride) };
+        
+        attr_pointers.push_back(normals_attr);
+        
+        return true;
+    }
+    
     static ObjectData create_data()
     {
         return ObjectData();
     }
+    
+    std::vector<std::pair<glm::vec3, glm::vec3>> get_normals () {return normal_vectors;}         // DEBUG PROP
     
 private:
     std::vector<T> data;
@@ -98,6 +176,8 @@ private:
     
     // runtime
     GLsizei vertex_count = 0;
+    
+    std::vector<std::pair<glm::vec3, glm::vec3>> normal_vectors;               // DEBUG
 };
 
 #endif /* ObjectData_hpp */

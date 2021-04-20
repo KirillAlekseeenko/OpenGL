@@ -25,10 +25,12 @@
 #include <iostream>
 #include <memory>
 
-class Object
+#include "Actor.hpp"
+
+class Object : public IActor
 {
 public:
-    Object(std::shared_ptr<ShaderProgram> p, ObjectData<float> d);
+    Object(std::shared_ptr<ShaderProgram> p, ObjectData<float> d);            // TODO: need to store vec3 position (for light)
     
     Object(const Object& o);
     Object& operator=(const Object& o);
@@ -39,14 +41,21 @@ public:
     Object& edit_vbo(std::function<void(VertexBufferObject& vbo)>);
     void draw();
     
-    Object& set_position(glm::mat4 pos);
+    Object& translate(glm::vec3 v);
+    Object& rotate(float angle, glm::vec3 axis);
+    Object& scale(glm::vec3 s);
+    
     glm::mat4 get_position();
+    glm::vec3 get_world_position();
     
     Object& set_shader(std::shared_ptr<ShaderProgram> sd);
     std::shared_ptr<ShaderProgram> get_shader();
     
     Object& set_texture(std::shared_ptr<Texture> t);
     std::shared_ptr<Texture> get_texture();
+    
+    void move_offset(glm::vec3 offset) override;
+    void rotate_offset(glm::vec3 offset) override;
     
 private:
     VertexArrayObject vao;
@@ -55,6 +64,8 @@ private:
     std::shared_ptr<ShaderProgram> program;
     
     glm::mat4 position {1.0f};
+    
+    glm::vec3 world_position {0.0f, 0.0f, 0.0f};
     
     ObjectData<float> object_data;
     

@@ -15,6 +15,7 @@
 		1242965C262B0F2800AA54CB /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1242965A262B0F2800AA54CB /* Counter.cpp */; };
 		12429661262B0F8100AA54CB /* InputController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1242965F262B0F8100AA54CB /* InputController.cpp */; };
 		12429666262B332700AA54CB /* AuxiliaryTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12429664262B332700AA54CB /* AuxiliaryTexture.cpp */; };
+		124E6C4C262C424800C88154 /* Vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 124E6C4A262C424700C88154 /* Vector.cpp */; };
 		124F1A9A26274C76006A1389 /* AttributePointers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 124F1A9826274C76006A1389 /* AttributePointers.cpp */; };
 		124F1A9E26274EE3006A1389 /* ObjectData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 124F1A9C26274EE3006A1389 /* ObjectData.cpp */; };
 		124F1AA226278D0A006A1389 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 124F1AA026278D0A006A1389 /* Texture.cpp */; };
@@ -59,6 +60,8 @@
 		12429660262B0F8100AA54CB /* InputController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InputController.hpp; sourceTree = "<group>"; };
 		12429664262B332700AA54CB /* AuxiliaryTexture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AuxiliaryTexture.cpp; sourceTree = "<group>"; };
 		12429665262B332700AA54CB /* AuxiliaryTexture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AuxiliaryTexture.hpp; sourceTree = "<group>"; };
+		124E6C4A262C424700C88154 /* Vector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vector.cpp; sourceTree = "<group>"; };
+		124E6C4B262C424700C88154 /* Vector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector.hpp; sourceTree = "<group>"; };
 		124F1A9826274C76006A1389 /* AttributePointers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AttributePointers.cpp; sourceTree = "<group>"; };
 		124F1A9926274C76006A1389 /* AttributePointers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AttributePointers.hpp; sourceTree = "<group>"; };
 		124F1A9C26274EE3006A1389 /* ObjectData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectData.cpp; sourceTree = "<group>"; };
@@ -108,6 +111,8 @@
 				121AAB012625F6D900CB87F0 /* Object.hpp */,
 				12301E2B2628C4830012D2B0 /* Camera.cpp */,
 				12301E2C2628C4830012D2B0 /* Camera.hpp */,
+				124E6C4A262C424700C88154 /* Vector.cpp */,
+				124E6C4B262C424700C88154 /* Vector.hpp */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -296,6 +301,7 @@
 				124F1A9E26274EE3006A1389 /* ObjectData.cpp in Sources */,
 				126035CB2623110300A5A888 /* ShaderProgram.cpp in Sources */,
 				12301E2D2628C4830012D2B0 /* Camera.cpp in Sources */,
+				124E6C4C262C424800C88154 /* Vector.cpp in Sources */,
 				126035D526234C6200A5A888 /* VertexBufferObject.cpp in Sources */,
 				1242964D262AA24E00AA54CB /* Move.cpp in Sources */,
 				124F1AA226278D0A006A1389 /* Texture.cpp in Sources */,
