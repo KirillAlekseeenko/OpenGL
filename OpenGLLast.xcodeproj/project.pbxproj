@@ -156,6 +156,36 @@
 		12977375267FC87F009CCDA8 /* ShaderLightAdapter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShaderLightAdapter.hpp; sourceTree = "<group>"; };
 		12A332662622120900753132 /* OpenGLLast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OpenGLLast.entitlements; sourceTree = "<group>"; };
 		12A5C0BE2659123100EDCCEE /* TextureType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TextureType.hpp; sourceTree = "<group>"; };
+		12C1E5EA26CE47ED00E0FD13 /* bricks2_disp.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bricks2_disp.jpg; sourceTree = "<group>"; };
+		12C1E5EB26CE47EE00E0FD13 /* brickwall_normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = brickwall_normal.jpg; sourceTree = "<group>"; };
+		12C1E5EC26CE47EE00E0FD13 /* skybox_bottom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = skybox_bottom.jpg; sourceTree = "<group>"; };
+		12C1E5ED26CE47EE00E0FD13 /* skybox_right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = skybox_right.jpg; sourceTree = "<group>"; };
+		12C1E5EE26CE47EE00E0FD13 /* spec.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = spec.psd; sourceTree = "<group>"; };
+		12C1E5EF26CE47EE00E0FD13 /* brickwall_spec.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = brickwall_spec.jpg; sourceTree = "<group>"; };
+		12C1E5F026CE47EE00E0FD13 /* brickwall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = brickwall.jpg; sourceTree = "<group>"; };
+		12C1E5F126CE47EE00E0FD13 /* skybox_top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = skybox_top.jpg; sourceTree = "<group>"; };
+		12C1E5F226CE47EE00E0FD13 /* gravel_01_height.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gravel_01_height.jpg; sourceTree = "<group>"; };
+		12C1E5F326CE47EE00E0FD13 /* gravel_01_diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gravel_01_diffuse.jpg; sourceTree = "<group>"; };
+		12C1E5F426CE47EE00E0FD13 /* bricks2_normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bricks2_normal.jpg; sourceTree = "<group>"; };
+		12C1E5F526CE47EE00E0FD13 /* gravel_01_normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gravel_01_normal.jpg; sourceTree = "<group>"; };
+		12C1E5F626CE47EE00E0FD13 /* toy_box_disp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toy_box_disp.png; sourceTree = "<group>"; };
+		12C1E5F726CE47EE00E0FD13 /* toy_box_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toy_box_normal.png; sourceTree = "<group>"; };
+		12C1E5F826CE47EE00E0FD13 /* skybox_back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = skybox_back.jpg; sourceTree = "<group>"; };
+		12C1E5F926CE47EE00E0FD13 /* toy_box_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toy_box_diffuse.png; sourceTree = "<group>"; };
+		12C1E5FA26CE47EE00E0FD13 /* skybox_left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = skybox_left.jpg; sourceTree = "<group>"; };
+		12C1E5FB26CE47EE00E0FD13 /* skybox_front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = skybox_front.jpg; sourceTree = "<group>"; };
+		12C1E5FC26CE47EE00E0FD13 /* bricks2_diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bricks2_diffuse.jpg; sourceTree = "<group>"; };
+		12C1E5FD26CE481900E0FD13 /* outlined_fragment_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = outlined_fragment_shader.glsl; sourceTree = "<group>"; };
+		12C1E5FE26CE481900E0FD13 /* light_fragment_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light_fragment_shader.glsl; sourceTree = "<group>"; };
+		12C1E5FF26CE481900E0FD13 /* default_vertex_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_vertex_shader.glsl; sourceTree = "<group>"; };
+		12C1E60026CE481900E0FD13 /* default_geometry_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_geometry_shader.glsl; sourceTree = "<group>"; };
+		12C1E60126CE481900E0FD13 /* earth_vertex_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = earth_vertex_shader.glsl; sourceTree = "<group>"; };
+		12C1E60226CE481900E0FD13 /* outlined_vertex_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = outlined_vertex_shader.glsl; sourceTree = "<group>"; };
+		12C1E60326CE481900E0FD13 /* default_fragment_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_fragment_shader.glsl; sourceTree = "<group>"; };
+		12C1E60426CE481900E0FD13 /* earth_fragment_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = earth_fragment_shader.glsl; sourceTree = "<group>"; };
+		12C1E60526CE481900E0FD13 /* light_vertex_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light_vertex_shader.glsl; sourceTree = "<group>"; };
+		12C1E60626CE481900E0FD13 /* skybox_fragment_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = skybox_fragment_shader.glsl; sourceTree = "<group>"; };
+		12C1E60726CE481900E0FD13 /* skybox_vertex_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = skybox_vertex_shader.glsl; sourceTree = "<group>"; };
 		12CAA209268E3F3A00063684 /* ShadowMappingSpecification.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ShadowMappingSpecification.cpp; sourceTree = "<group>"; };
 		12CAA20A268E3F3A00063684 /* ShadowMappingSpecification.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShadowMappingSpecification.hpp; sourceTree = "<group>"; };
 		12D554752664292F00147FB1 /* ILightSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ILightSource.cpp; sourceTree = "<group>"; };
@@ -278,6 +308,17 @@
 		125DE0DF264FB03D00B04467 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				12C1E60326CE481900E0FD13 /* default_fragment_shader.glsl */,
+				12C1E60026CE481900E0FD13 /* default_geometry_shader.glsl */,
+				12C1E5FF26CE481900E0FD13 /* default_vertex_shader.glsl */,
+				12C1E60426CE481900E0FD13 /* earth_fragment_shader.glsl */,
+				12C1E60126CE481900E0FD13 /* earth_vertex_shader.glsl */,
+				12C1E5FE26CE481900E0FD13 /* light_fragment_shader.glsl */,
+				12C1E60526CE481900E0FD13 /* light_vertex_shader.glsl */,
+				12C1E5FD26CE481900E0FD13 /* outlined_fragment_shader.glsl */,
+				12C1E60226CE481900E0FD13 /* outlined_vertex_shader.glsl */,
+				12C1E60626CE481900E0FD13 /* skybox_fragment_shader.glsl */,
+				12C1E60726CE481900E0FD13 /* skybox_vertex_shader.glsl */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -285,6 +326,25 @@
 		125DE0E0264FB04200B04467 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				12C1E5FC26CE47EE00E0FD13 /* bricks2_diffuse.jpg */,
+				12C1E5EA26CE47ED00E0FD13 /* bricks2_disp.jpg */,
+				12C1E5F426CE47EE00E0FD13 /* bricks2_normal.jpg */,
+				12C1E5EB26CE47EE00E0FD13 /* brickwall_normal.jpg */,
+				12C1E5EF26CE47EE00E0FD13 /* brickwall_spec.jpg */,
+				12C1E5F026CE47EE00E0FD13 /* brickwall.jpg */,
+				12C1E5F326CE47EE00E0FD13 /* gravel_01_diffuse.jpg */,
+				12C1E5F226CE47EE00E0FD13 /* gravel_01_height.jpg */,
+				12C1E5F526CE47EE00E0FD13 /* gravel_01_normal.jpg */,
+				12C1E5F826CE47EE00E0FD13 /* skybox_back.jpg */,
+				12C1E5EC26CE47EE00E0FD13 /* skybox_bottom.jpg */,
+				12C1E5FB26CE47EE00E0FD13 /* skybox_front.jpg */,
+				12C1E5FA26CE47EE00E0FD13 /* skybox_left.jpg */,
+				12C1E5ED26CE47EE00E0FD13 /* skybox_right.jpg */,
+				12C1E5F126CE47EE00E0FD13 /* skybox_top.jpg */,
+				12C1E5EE26CE47EE00E0FD13 /* spec.psd */,
+				12C1E5F926CE47EE00E0FD13 /* toy_box_diffuse.png */,
+				12C1E5F626CE47EE00E0FD13 /* toy_box_disp.png */,
+				12C1E5F726CE47EE00E0FD13 /* toy_box_normal.png */,
 			);
 			path = Textures;
 			sourceTree = "<group>";
