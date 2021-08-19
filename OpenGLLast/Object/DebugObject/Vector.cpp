@@ -12,28 +12,9 @@
 
 #include <cmath>
 
-glm::mat4 huyevaya_versiya(glm::vec3 o, glm::vec3 d)
-{
-    auto norm_d = glm::normalize(d);
-    
-    float rot_m_data[] = {
-        0.0f, 0.0f, norm_d.x, 0.0f,
-        0.0f, 0.0f, norm_d.y, 0.0f,
-        0.0f, 0.0f, norm_d.z, 0.0f,
-        0.0f, 0.0f, 0.0f,   1.0f,
-    };
-    
-    glm::mat4 rot_m;
-    std::memcpy(glm::value_ptr(rot_m), rot_m_data, sizeof(rot_m_data));
-    rot_m = glm::transpose(rot_m);
-    
-    glm::mat4 translate_m {1.0f};
-    translate_m = glm::translate(translate_m, o);
-    
-    return translate_m * rot_m;
-}
+#include "IRenderer.hpp"
 
-Vector::Vector(std::shared_ptr<ShaderProgram> s) : shader {s}, data{}, vao{}, vbo{GL_ARRAY_BUFFER}
+Vector::Vector() : data{}, vao{}, vbo{GL_ARRAY_BUFFER}
 {
     data.set_data(std::vector<float> {
         0.0f, 0.0f, 0.0f,
@@ -71,7 +52,7 @@ Vector::Vector(std::shared_ptr<ShaderProgram> s) : shader {s}, data{}, vao{}, vb
     })
     .set_attribute_pointer(AttributePointer{0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0});
     
-    vao.use_binded([this] ()
+    vao.use_binded([this]()
     {
         vbo.initialize(data.get_data_ref(), true);
     });
@@ -127,42 +108,22 @@ Vector& Vector::set_color(glm::vec3 c)
     return *this;
 }
 
-void Vector::draw()
+void Vector::draw(IRenderer* renderer, std::shared_ptr<ShaderProgram> shader)
 {
-    if (!is_ready_for_drawing)
-    {
-        if (!data.validate()) throw std::runtime_error{"object_data is invalid"};
-        
-        model_uniform = shader->get_uniform_location("model");
-        color_uniform = shader->get_uniform_location("color");
-        
-        vao.use_binded([this]()
-        {
-            for (const auto& attr : data.get_attributes_ref())
-            {
-                vbo.set_attrib_pointer(attr.index, attr.size_per_vertex, attr.type, attr.normalized, attr.stride, attr.offset);
-            }
-        });
-        
-        
-        is_ready_for_drawing = true;
-    }
-    
-    shader->use();
-    
-    glUniformMatrix4fv(model_uniform, 1, GL_FALSE, glm::value_ptr(position));
-    glUniform3fv(color_uniform, 1, glm::value_ptr(color));
-    
-    vao.use_binded([this]()
-    {
-        int begin = 0;
-        int count = data.get_vertex_count();
-        
-        glEnable(GL_LINE_SMOOTH);
-        
-        glDrawArrays(GL_LINES, begin, count - 1);
-        
-        glDisable(GL_LINE_SMOOTH);
-        glDrawArrays(GL_POINTS, count - 1, 1);
-    });
+    renderer->draw_vector(this, shader.get());
+}
+
+ObjectData<float>* Vector::get_data()
+{
+    return &data;
+}
+
+VertexArrayObject* Vector::get_vao()
+{
+    return &vao;
+}
+
+VertexBufferObject* Vector::get_vbo()
+{
+    return &vbo;
 }

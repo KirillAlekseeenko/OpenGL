@@ -48,11 +48,13 @@ void Camera::move_offset(glm::vec3 offset)
 {
     auto forward = offset.z;
     auto left = -offset.x;
+    auto up = offset.y;
     
     auto leftDir = glm::cross(direction, get_up_vector());
     
     position = position + forward * direction;
     position = position + left * leftDir;
+    position = position + up * get_up_vector();
 }
 
 void Camera::rotate_offset(glm::vec3 offset)

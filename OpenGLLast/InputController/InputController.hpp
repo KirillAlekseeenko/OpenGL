@@ -16,9 +16,11 @@
 class InputController
 {
 public:
-    std::pair<bool, std::unique_ptr<ICommand>> try_process_movement(GLFWwindow* window, float delta);
-    std::pair<bool, std::unique_ptr<ICommand>> try_process_view(GLFWwindow* window, float delta);
+    std::pair<bool, std::unique_ptr<ICommand>> try_get_movement_cmd(GLFWwindow* window, float delta);
+    std::pair<bool, std::unique_ptr<ICommand>> try_get_view_cmd(GLFWwindow* window, float delta);
     std::pair<bool, std::unique_ptr<ICommand>> try_process_secondary_movement(GLFWwindow* window, float delta, float sense);
+    std::pair<bool, std::unique_ptr<ICommand>> try_process_secondary_rotation(GLFWwindow* window, float delta, float sense = 1.0f);
+    
     
     InputController& set_movement_sense(float s);
     InputController& set_view_sense(float s);

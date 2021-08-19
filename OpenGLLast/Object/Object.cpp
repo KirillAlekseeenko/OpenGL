@@ -7,48 +7,48 @@
 
 #include <exception>
 #include "Object.hpp"
+#include "Meta.hpp"
 
 #include <glm/gtc/type_ptr.hpp>
 
-Object::Object(std::shared_ptr<ShaderProgram> p, ObjectData<float> d) :
-vao{},
-vbo{GL_ARRAY_BUFFER},           // for simplicity took array buffer
-program{p},
+Object::Object(ObjectData<float> d) :                     // TODO: remove shader 'program' field
+vao{std::make_unique<VertexArrayObject>()},
+vbo{std::make_unique<VertexBufferObject>(GL_ARRAY_BUFFER)},           // for simplicity took array buffer
 object_data{std::move(d)}
 {
-    vao.use_binded([this] ()
+    vao->use_binded([this] ()
     {
-        vbo.initialize(object_data.get_data_ref(), true);
+        vbo->initialize(object_data.get_data_ref(), true);
     });
 }
 
 Object::Object(const Object& o)
-: program{o.program},
-  object_data {o.object_data},
-  vao{},
-  vbo{GL_ARRAY_BUFFER},
-  texture{o.texture}
+: object_data {o.object_data},
+  vao{std::make_unique<VertexArrayObject>()},
+  vbo{std::make_unique<VertexBufferObject>(GL_ARRAY_BUFFER)},
+  maps{o.maps},
+draw_parameters {o.draw_parameters}
 {
-    vao.use_binded([this] ()
+    vao->use_binded([this] ()
     {
-        vbo.initialize(object_data.get_data_ref(), true);
+        vbo->initialize(object_data.get_data_ref(), true);
     });
 }
 
 Object& Object::operator=(const Object& o)
 {
-    vao = VertexArrayObject{};
-    vbo = VertexBufferObject{GL_ARRAY_BUFFER};
+    vao = std::make_unique<VertexArrayObject>();
+    vbo = std::make_unique<VertexBufferObject>(GL_ARRAY_BUFFER);
     
     object_data = o.object_data;
-    program = o.program;
+    draw_parameters = o.draw_parameters;
     
-    vao.use_binded([this] ()
+    vao->use_binded([this] ()
     {
-        vbo.initialize(object_data.get_data_ref(), true);
+        vbo->initialize(object_data.get_data_ref(), true);
     });
     
-    texture = o.texture;
+    maps = o.maps;
     
     return *this;
 }
@@ -57,8 +57,8 @@ Object::Object(Object&& o)
 : vao{std::move(o.vao)},
   vbo{std::move(o.vbo)},
   object_data{std::move(o.object_data)},
-  program{o.program},
-  texture{o.texture}
+maps{std::move(o.maps)},
+draw_parameters {o.draw_parameters}
 {
     
 }
@@ -68,90 +68,55 @@ Object& Object::operator=(Object&& o)
     vao = std::move(o.vao);
     vbo = std::move(o.vbo);
     object_data = std::move(o.object_data);
-    program = o.program;
-    texture = o.texture;
+    maps = std::move(o.maps);
+    draw_parameters = o.draw_parameters;
     
     return *this;
 }
 
-Object& Object::edit_vbo(std::function<void(VertexBufferObject& vbo)> f)
+Object& Object::edit_vbo(std::function<void(VertexBufferObject* vbo)> f)
 {
-    vao.use_binded([this, &f]()
+    vao->use_binded([this, &f]()
     {
-        f(vbo);
+        f(vbo.get());
     });
     
     return *this;
-}
-
-void Object::draw()
-{
-    if (!is_ready_for_drawing)
-    {
-        if (!object_data.validate()) throw std::runtime_error{"object_data is invalid"};
-        
-        model_uniform = program->get_uniform_location("model");       // TODO: maybe parse uniforms during before compilation?
-        
-        if (texture.get() != nullptr)
-        {
-            texture_uniform = program->get_uniform_location("texture0");
-        }
-        
-        vao.use_binded([this]()
-        {
-            for (const auto& attr : object_data.get_attributes_ref())
-            {
-                vbo.set_attrib_pointer(attr.index, attr.size_per_vertex, attr.type, attr.normalized, attr.stride, attr.offset);
-            }
-        });
-        
-        is_ready_for_drawing = true;
-    }
-    
-    program->use();
-    
-    glUniformMatrix4fv(model_uniform, 1, GL_FALSE, glm::value_ptr(position));
-    
-    vao.use_binded([this]()
-    {
-        int begin = 0;
-        int count = object_data.get_vertex_count();
-        
-        if (texture.get() != nullptr)
-        {
-            //glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, texture->get_handle());
-        }
-        
-        glDrawArrays(GL_TRIANGLES, begin, count);
-    });
 }
 
 Object& Object::translate(glm::vec3 v)
 {
     world_position += v;
-    position = glm::translate(position, v);
+    translation_matrix = glm::translate(translation_matrix, v);
+    
+    return *this;
+}
+
+Object& Object::set_world_position(glm::vec3 v)
+{
+    world_position = v;
+    translation_matrix = glm::translate(glm::mat4{1.0f}, v);
     
     return *this;
 }
 
 Object& Object::rotate(float angle, glm::vec3 axis)
 {
-    position = glm::rotate(position, angle, axis);
+    rotation_matrix = glm::rotate(rotation_matrix, angle, axis);
     
     return *this;
 }
 
 Object& Object::scale(glm::vec3 s)
 {
-    position = glm::scale(position, s);
+    scale_matrix = glm::scale(scale_matrix, s);
     
     return *this;
 }
 
 glm::mat4 Object::get_position()
 {
-    return position;
+    return translation_matrix * rotation_matrix * scale_matrix;
 }
 
 glm::vec3 Object::get_world_position()
@@ -159,28 +124,59 @@ glm::vec3 Object::get_world_position()
     return world_position;
 }
 
-Object& Object::set_shader(std::shared_ptr<ShaderProgram> sd)
+Object& Object::set_diffuse(std::shared_ptr<ITexture> t)
 {
-    program = sd;
-    
+    return set_texture(std::move(t), TextureType::Diffuse);
+}
+
+std::shared_ptr<ITexture> Object::get_diffuse()
+{
+    return get_texture(TextureType::Diffuse);
+}
+
+Object& Object::set_normal_map(std::shared_ptr<ITexture> t)
+{
+    return set_texture(std::move(t), TextureType::Normal);
+}
+std::shared_ptr<ITexture> Object::get_normal_map()
+{
+    return get_texture(TextureType::Normal);
+}
+
+Object& Object::set_specular_map(std::shared_ptr<ITexture> t)
+{
+    return set_texture(std::move(t), TextureType::Specular);
+}
+
+std::shared_ptr<ITexture> Object::get_specular_map()
+{
+    return get_texture(TextureType::Specular);
+}
+
+Object& Object::set_disp_map(std::shared_ptr<ITexture> t)
+{
+    return set_texture(std::move(t), TextureType::Displacement);
+}
+
+std::shared_ptr<ITexture> Object::get_disp_map()
+{
+    return get_texture(TextureType::Displacement);
+}
+
+Object::maps_arr& Object::get_all_maps()
+{
+    return maps;
+}
+
+Object& Object::set_texture(std::shared_ptr<ITexture> &&t, TextureType type)
+{
+    maps[to_underlying(type)] = t;
     return *this;
 }
 
-std::shared_ptr<ShaderProgram> Object::get_shader()
+std::shared_ptr<ITexture> Object::get_texture(TextureType type)
 {
-    return program;
-}
-
-Object& Object::set_texture(std::shared_ptr<Texture> s)
-{
-    texture = s;
-    
-    return *this;
-}
-
-std::shared_ptr<Texture> Object::get_texture()
-{
-    return texture;
+    return maps[to_underlying(type)];
 }
 
 
@@ -194,4 +190,29 @@ void Object::move_offset(glm::vec3 offset)
 void Object::rotate_offset(glm::vec3 offset)           // TODO: rotation axis to rotate random object
 {
     
+}
+
+VertexArrayObject* Object::get_vao() const
+{
+    return vao.get();
+}
+
+VertexBufferObject* Object::get_vbo() const
+{
+    return vbo.get();
+}
+
+ObjectData<float>* Object::get_object_data()
+{
+    return &object_data;
+}
+
+DrawParameters& Object::get_draw_parameters()
+{
+    return draw_parameters;
+}
+
+std::shared_ptr<Object> Object::create_dir_light_obj()
+{
+    throw std::runtime_error("not implemented");
 }

@@ -12,31 +12,56 @@
 #include <iostream>
 #include <vector>
 
-#include "ShaderProgram.hpp"
 #include "ObjectData.hpp"
 #include "VertexArrayObject.hpp"
+#include "VertexBufferObject.hpp"
 
-class Vector
+#include "IDebugObject.hpp"
+
+/*
+ 
+ It's the object for displaying vectors (ex. normals)
+ 
+ */
+
+class Vector : public IDebugObject
 {
 public:
-    Vector(std::shared_ptr<ShaderProgram> s);
+    Vector();
+    
+    Vector(const Vector& v) = delete;
+    Vector& operator=(const Vector& v) = delete;
     
     glm::vec3 get_origin() const {return origin;}
     glm::vec3 get_direction() const {return direction;}
     glm::vec3 get_color() const {return color;}
     
+    glm::mat4 get_position() const {return position;}
+    
     Vector& set_positon(glm::vec3 o, glm::vec3 d);
     Vector& set_color(glm::vec3 c);
     
-    void draw();
+    ObjectData<float>* get_data();
+    
+    VertexArrayObject* get_vao();
+    VertexBufferObject* get_vbo();
+    
+    /*
+     
+     create object as a field
+     create debug shader for drawing lights, vectors on the scene
+     
+     */
+    
+    void draw(IRenderer* renderer, std::shared_ptr<ShaderProgram> shader) override;
 private:
+    
     glm::vec3 origin;
     glm::vec3 direction;
     
     glm::mat4 position {1.0f};
     glm::vec3 color {1.0f, 0.0f, 0.0f};
     
-    std::shared_ptr<ShaderProgram> shader;
     ObjectData<float> data;
     
     VertexArrayObject vao;

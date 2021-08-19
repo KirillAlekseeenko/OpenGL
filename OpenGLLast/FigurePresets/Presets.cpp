@@ -9,9 +9,9 @@
 
 std::vector<float> get_pyramide()
 {
-    return std::vector<float>{
+    /*return std::vector<float>{
         // quad basement
-        0.0f, 0.0f, 0.0f,       0.5f, 0.2f, 0.2f,      0.0f, 0.0f,                 //
+        0.0f, 0.0f, 0.0f,       0.5f, 0.2f, 0.2f,      0.0f, 0.0f,                 // TODO: model center should be in (0, 0, 0)
         0.0f, 1.0f, 0.0f,       0.5f, 0.2f, 0.2f,     0.0f, 1.0f,
         1.0f, 0.0f, 0.0f,       0.5f, 0.2f, 0.2f,      1.0f, 0.0f,
         
@@ -37,6 +37,62 @@ std::vector<float> get_pyramide()
         0.0f, 1.0f, 0.0f,       0.5f, 0.2f, 0.2f,      0.5f, 0.0f,
         0.5f, 0.5f, 1.0f,       0.5f, 0.2f, 0.2f,      0.25f, 0.56f,
         
+    };*/
+    
+    /*return std::vector<float>{
+        -0.5f, -0.5f, -0.5f,       0.5f, 0.2f, 0.2f,      0.0f, 0.0f,                 // small bias in basement
+        -0.5f, 0.5f, -0.5f,       0.5f, 0.2f, 0.2f,     0.0f, 1.0f,
+        0.5f, -0.5f, -0.5f,       0.5f, 0.2f, 0.2f,      1.0f, 0.0f,
+        
+        0.5f, -0.5f, -0.5f,       0.5f, 0.2f, 0.2f,      1.0f, 0.0f,
+        -0.5f, 0.5f, -0.5f,       0.5f, 0.2f, 0.2f,      0.0f, 1.0f,
+        0.5f, 0.5f, -0.5f,       0.5f, 0.2f, 0.2f,      1.0f, 1.0f,
+        
+        // triangles
+        
+        0.0f, 0.0f, 0.5f,       0.5f, 0.2f, 0.2f,      0.25f, 0.56f,
+        -0.5f, 0.5f, -0.5f,       0.5f, 0.2f, 0.2f,      0.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f,       0.5f, 0.2f, 0.2f,      0.5f, 0.0f,
+        
+        -0.5f, -0.5f, -0.5f,       0.5f, 0.2f, 0.2f,      0.5f, 0.0f,
+        0.5f, -0.5f, -0.5f,       0.5f, 0.2f, 0.2f,      0.0f, 0.0f,
+        0.0f, 0.0f, 0.5f,       0.5f, 0.2f, 0.2f,      0.25f, 0.56f,
+        
+        0.5f, -0.5f, -0.5f,       0.5f, 0.2f, 0.2f,      0.0f, 0.0f,
+        0.5f, 0.5f, -0.5f,       0.5f, 0.2f, 0.2f,      0.5f, 0.0f,
+        0.0f, 0.0f, 0.5f,       0.5f, 0.2f, 0.2f,      0.25f, 0.56f,
+        
+        0.5f, 0.5f, -0.5f,       0.5f, 0.2f, 0.2f,      0.0f, 0.0f,
+        -0.5f, 0.5f, -0.5f,       0.5f, 0.2f, 0.2f,      0.5f, 0.0f,
+        0.0f, 0.0f, 0.5f,       0.5f, 0.2f, 0.2f,      0.25f, 0.56f,
+    };*/
+    
+    return std::vector<float>{
+        -0.5f, -0.5f, -0.3f,       0.5f, 0.2f, 0.2f,      0.0f, 0.0f,
+        -0.5f, 0.5f, -0.3f,       0.5f, 0.2f, 0.2f,     0.0f, 1.0f,
+        0.5f, -0.5f, -0.3f,       0.5f, 0.2f, 0.2f,      1.0f, 0.0f,
+        
+        0.5f, -0.5f, -0.3f,       0.5f, 0.2f, 0.2f,      1.0f, 0.0f,
+        -0.5f, 0.5f, -0.3f,       0.5f, 0.2f, 0.2f,      0.0f, 1.0f,
+        0.5f, 0.5f, -0.3f,       0.5f, 0.2f, 0.2f,      1.0f, 1.0f,
+        
+        // triangles
+        
+        0.0f, 0.0f, 0.7f,       0.5f, 0.2f, 0.2f,      0.25f, 0.56f,
+        -0.5f, 0.5f, -0.3f,       0.5f, 0.2f, 0.2f,      0.0f, 0.0f,
+        -0.5f, -0.5f, -0.3f,       0.5f, 0.2f, 0.2f,      0.5f, 0.0f,
+        
+        -0.5f, -0.5f, -0.3f,       0.5f, 0.2f, 0.2f,      0.5f, 0.0f,
+        0.5f, -0.5f, -0.3f,       0.5f, 0.2f, 0.2f,      0.0f, 0.0f,
+        0.0f, 0.0f, 0.7f,       0.5f, 0.2f, 0.2f,      0.25f, 0.56f,
+        
+        0.5f, -0.5f, -0.3f,       0.5f, 0.2f, 0.2f,      0.0f, 0.0f,
+        0.5f, 0.5f, -0.3f,       0.5f, 0.2f, 0.2f,      0.5f, 0.0f,
+        0.0f, 0.0f, 0.7f,       0.5f, 0.2f, 0.2f,      0.25f, 0.56f,
+        
+        0.5f, 0.5f, -0.3f,       0.5f, 0.2f, 0.2f,      0.0f, 0.0f,
+        -0.5f, 0.5f, -0.3f,       0.5f, 0.2f, 0.2f,      0.5f, 0.0f,
+        0.0f, 0.0f, 0.7f,       0.5f, 0.2f, 0.2f,      0.25f, 0.56f,
     };
 }
 
@@ -67,9 +123,9 @@ std::vector<glm::vec3> get_positions()
     };
 }
 
-std::vector<float> get_light_cube()
+std::vector<float> get_light_cube(float size)
 {
-    return std::vector<float>{
+    std::vector<float> data{
             -0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f,   // Bottom-left
              0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f,   // bottom-right
              0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,   // top-right
@@ -112,11 +168,84 @@ std::vector<float> get_light_cube()
             -0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f,   // bottom-left
             -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,   // top-left
     };
+    
+    for (auto i = 0; i < data.size(); i++)
+    {
+        if (i % 6 >= 3) continue;
+        
+        data[i] *= size;
+    }
+    
+    return data;
 }
 
-std::vector<float> get_quad()
+std::vector<float> get_skybox_cube()
+{
+    return std::vector<float>{
+        -1.0f,  1.0f, -1.0f,
+                -1.0f, -1.0f, -1.0f,
+                 1.0f, -1.0f, -1.0f,
+                 1.0f, -1.0f, -1.0f,
+                 1.0f,  1.0f, -1.0f,
+                -1.0f,  1.0f, -1.0f,
+
+                -1.0f, -1.0f,  1.0f,
+                -1.0f, -1.0f, -1.0f,
+                -1.0f,  1.0f, -1.0f,
+                -1.0f,  1.0f, -1.0f,
+                -1.0f,  1.0f,  1.0f,
+                -1.0f, -1.0f,  1.0f,
+
+                 1.0f, -1.0f, -1.0f,
+                 1.0f, -1.0f,  1.0f,
+                 1.0f,  1.0f,  1.0f,
+                 1.0f,  1.0f,  1.0f,
+                 1.0f,  1.0f, -1.0f,
+                 1.0f, -1.0f, -1.0f,
+
+                -1.0f, -1.0f,  1.0f,
+                -1.0f,  1.0f,  1.0f,
+                 1.0f,  1.0f,  1.0f,
+                 1.0f,  1.0f,  1.0f,
+                 1.0f, -1.0f,  1.0f,
+                -1.0f, -1.0f,  1.0f,
+
+                -1.0f,  1.0f, -1.0f,
+                 1.0f,  1.0f, -1.0f,
+                 1.0f,  1.0f,  1.0f,
+                 1.0f,  1.0f,  1.0f,
+                -1.0f,  1.0f,  1.0f,
+                -1.0f,  1.0f, -1.0f,
+
+                -1.0f, -1.0f, -1.0f,
+                -1.0f, -1.0f,  1.0f,
+                 1.0f, -1.0f, -1.0f,
+                 1.0f, -1.0f, -1.0f,
+                -1.0f, -1.0f,  1.0f,
+                 1.0f, -1.0f,  1.0f
+    };
+}
+
+std::vector<float> get_quad()                 // for framebuffers
 {
     return std::vector<float>{};
+}
+
+std::vector<float> get_earth_plane(float size)
+{
+    auto res = std::vector<float>{
+        -4.0f, 0.0f,  4.0f,     0.0f, 1.0f, 0.0f,       0.0f, 0.0f,
+         4.0f, 0.0f, -4.0f,     1.0f, 0.0f, 0.0f,       1.0f, 1.0f,
+        -4.0f, 0.0f, -4.0f,     0.0f, 0.0f, 1.0f,       0.0f, 1.0f,
+        
+        -4.0f, 0.0f,  4.0f,     0.0f, 1.0f, 0.0f,       0.0f, 0.0f,
+         4.0f, 0.0f,  4.0f,     0.0f, 0.0f, 1.0f,       1.0f, 0.0f,
+         4.0f, 0.0f, -4.0f,     1.0f, 0.0f, 0.0f,       1.0f, 1.0f,
+    };
+    
+    std::transform(res.begin(), res.end(), res.begin(), [size](float c) {return c * size;});
+    
+    return res;
 }
 
 
